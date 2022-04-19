@@ -11,8 +11,8 @@ namespace Morgenmadsbuffeten.Data
             : base(options)
         {
         }
-        DbSet<RoomBooking> RoomBookings { get; set; }
-        DbSet<BreakfastBooking> BreakfastBookings { get; set; }
+        public DbSet<RoomBooking> RoomBookings { get; set; }
+        public DbSet<BreakfastBooking> BreakfastBookings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -21,6 +21,7 @@ namespace Morgenmadsbuffeten.Data
             builder.Entity<RoomBooking>()
                 .HasKey(rb => rb.RoomNumber);
 
+            //Many breakfastbookings to one room
             builder.Entity<BreakfastBooking>()
                 .HasOne(bb => bb.RoomBooking)
                 .WithMany(rb => rb.BreakfastBookings);
