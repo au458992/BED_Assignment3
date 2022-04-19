@@ -13,6 +13,19 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddRazorPages();
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("CanSeeReceptionStuff", policybuilder => policybuilder
+        .RequireClaim("IsReceptionist"));
+
+    options.AddPolicy("CanSeeWaiterStuff", policybuilder => policybuilder
+        .RequireClaim("IsWaiter"));
+
+    options.AddPolicy("CanSeeKitchenStuff", policybuilder => policybuilder
+        .RequireClaim("IsWorker"));
+
+});
+
 
 var app = builder.Build();
 
