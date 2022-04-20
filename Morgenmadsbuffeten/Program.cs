@@ -59,4 +59,9 @@ using (var scope = app.Services.CreateScope())
     else throw new Exception("Unable to get UserManager!");
 }
 
+using (var dbcontext = new ApplicationDbContext())
+{
+    SeedData.SeedBookings(dbcontext);
+}
+
 app.Run();
