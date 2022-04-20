@@ -5,7 +5,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>List over rooms and number of guests who had breakfast today</h1>
 
 <p>
     <a asp-page="Create">Create New Room Booking</a>
@@ -14,22 +14,28 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.RoomBooking[0].Adults)
+                @Html.DisplayNameFor(model => model.BreakfastBookings[0].RoomNumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RoomBooking[0].Children)
+                @Html.DisplayNameFor(model => model.BreakfastBookings[0].NumberOfAdults)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BreakfastBookings[0].NumberOfChildren)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.RoomBooking) {
+@foreach (var item in Model.BreakfastBookings) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Adults)
+                @Html.DisplayFor(modelItem => item.RoomNumber)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Children)
+                @Html.DisplayFor(modelItem => item.NumberOfAdults)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfChildren)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.RoomNumber">Edit</a> |

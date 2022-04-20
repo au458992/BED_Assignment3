@@ -12,7 +12,7 @@ using Morgenmadsbuffeten.Models;
 
 namespace Morgenmadsbuffeten.Pages.BreakfastBookingView
 {
-    [Authorize("CanSeeReceptionStuff")]
+    [Authorize("CanSeeWaiterStuff")]
     public class CreateModel : PageModel
     {
         private readonly Morgenmadsbuffeten.Data.ApplicationDbContext _context;
@@ -40,6 +40,7 @@ namespace Morgenmadsbuffeten.Pages.BreakfastBookingView
 
             _context.BreakfastBookings.Add(BreakfastBooking);
             await _context.SaveChangesAsync();
+
 
             return RedirectToPage("./Index");
         }
