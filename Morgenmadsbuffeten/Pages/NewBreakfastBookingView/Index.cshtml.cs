@@ -31,6 +31,7 @@ namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
                  .Where(bb => (bb.AdultsCheckedIn > 0 || bb.ChildrenCheckedIn > 0) && bb.Date == DateTime.Today)
                 .Select(bb => new RoomsBreakfastDTO
                 {
+                    BreakfastBookingId = bb.BreakfastBookingId,
                     RoomNumber = bb.RoomBooking.RoomNumber,
                     NumberOfChildren = bb.ChildrenCheckedIn,
                     NumberOfAdults = bb.AdultsCheckedIn,
