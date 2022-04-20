@@ -1,0 +1,58 @@
+﻿@page
+@model Morgenmadsbuffeten.Pages.NewBreakfastBookingView.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>BreakfastBooking</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="BreakfastBooking.Date" class="control-label"></label>
+                <input asp-for="BreakfastBooking.Date" class="form-control" />
+                <span asp-validation-for="BreakfastBooking.Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BreakfastBooking.AdultsCheckedIn" class="control-label"></label>
+                <input asp-for="BreakfastBooking.AdultsCheckedIn" class="form-control" />
+                <span asp-validation-for="BreakfastBooking.AdultsCheckedIn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BreakfastBooking.ChildrenCheckedIn" class="control-label"></label>
+                <input asp-for="BreakfastBooking.ChildrenCheckedIn" class="form-control" />
+                <span asp-validation-for="BreakfastBooking.ChildrenCheckedIn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BreakfastBooking.AdultsOrdered" class="control-label"></label>
+                <input asp-for="BreakfastBooking.AdultsOrdered" class="form-control" />
+                <span asp-validation-for="BreakfastBooking.AdultsOrdered" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BreakfastBooking.ChildrenOrdered" class="control-label"></label>
+                <input asp-for="BreakfastBooking.ChildrenOrdered" class="form-control" />
+                <span asp-validation-for="BreakfastBooking.ChildrenOrdered" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BreakfastBooking.Room" class="control-label"></label>
+                <select asp-for="BreakfastBooking.Room" class ="form-control" asp-items="ViewBag.Room"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
