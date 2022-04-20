@@ -37,6 +37,10 @@ namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
                 return Page();
             }
 
+            // Checked in is 0 by default
+            BreakfastBooking.ChildrenCheckedIn = 0;
+            BreakfastBooking.AdultsCheckedIn = 0;
+
             _context.BreakfastBookings.Add(BreakfastBooking);
             await _context.SaveChangesAsync();
 
