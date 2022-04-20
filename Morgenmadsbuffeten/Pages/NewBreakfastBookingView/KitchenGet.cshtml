@@ -1,55 +1,73 @@
 ﻿@page
-@model Morgenmadsbuffeten.Pages.BreakfastBookingView.KitchenGetModel
+@model Morgenmadsbuffeten.Pages.NewBreakfastBookingView.KitchenGetModel
 
 @{
     ViewData["Title"] = "Kitchen stuff";
 }
 
-<h1>Get info here kitchen peiple</h1>
+<h1>Get info here kitchen people</h1>
 
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
 <table class="table">
     <thead>
     <tr>
         <th>
-            @Html.Display("TotalGuests")
-        </th>
-
-        <th>
-            @Html.DisplayNameFor(model => model.BreakfastBooking[0].Date)
+            @Html.DisplayNameFor(model => model.TotalOrders)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BreakfastBooking[0].AdultsCheckedIn)
+            @Html.DisplayNameFor(model => model.TotalOrdersAdults)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BreakfastBooking[0].ChildrenCheckedIn)
+            @Html.DisplayNameFor(model => model.TotalOrdersChildren)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BreakfastBooking[0].RoomBooking)
+            @Html.DisplayNameFor(model => model.TotalCheckedInAdults)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalCheckedInChildren)
+        </th>
+         <th>
+            @Html.Display("TotalGuestsNotCheckedIn")
+        </th>
+        <th>
+            @Html.Display("TotalAdultsNotCheckedIn")
+        </th>
+        <th>
+            @Html.Display("TotalChildrenNotCheckedIn")
         </th>
         <th></th>
     </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.BreakfastBooking) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Date)
+                @Html.DisplayFor(model => model.TotalOrders)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AdultsCheckedIn)
+                @Html.DisplayFor(model => model.TotalOrdersAdults)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ChildrenCheckedIn)
+                @Html.DisplayFor(model => model.TotalOrdersChildren)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.RoomBooking.RoomNumber)
+                @Html.DisplayFor(model => model.TotalCheckedInAdults)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.BreakfastBookingId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.BreakfastBookingId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.BreakfastBookingId">Delete</a>
+                @Html.DisplayFor(model => model.TotalCheckedInChildren)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.TotalNotCheckedIn)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.TotalAdultsNotCheckedIn)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.TotalChildrenNotCheckedIn)
             </td>
         </tr>
-}
     </tbody>
 </table>
