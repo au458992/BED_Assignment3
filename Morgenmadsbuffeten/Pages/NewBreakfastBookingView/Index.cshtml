@@ -8,52 +8,34 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Create New BreakfastBooking</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.BreakfastBooking[0].Date)
+                @Html.DisplayNameFor(model => model.BreakfastBookings[0].RoomNumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BreakfastBooking[0].AdultsCheckedIn)
+                @Html.DisplayNameFor(model => model.BreakfastBookings[0].NumberOfAdults)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BreakfastBooking[0].ChildrenCheckedIn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BreakfastBooking[0].AdultsOrdered)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BreakfastBooking[0].ChildrenOrdered)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BreakfastBooking[0].RoomBooking)
+                @Html.DisplayNameFor(model => model.BreakfastBookings[0].NumberOfChildren)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.BreakfastBooking) {
+@foreach (var item in Model.BreakfastBookings) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Date)
+                @Html.DisplayFor(modelItem => item.RoomNumber)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AdultsCheckedIn)
+                @Html.DisplayFor(modelItem => item.NumberOfAdults)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ChildrenCheckedIn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AdultsOrdered)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ChildrenOrdered)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RoomBooking.RoomNumber)
+                @Html.DisplayFor(modelItem => item.NumberOfChildren)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.BreakfastBookingId">Edit</a> |
