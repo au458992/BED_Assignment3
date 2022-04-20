@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
+using Morgenmadsbuffeten.Models;
 
 namespace Morgenmadsbuffeten.Data
 {
@@ -74,6 +75,18 @@ namespace Morgenmadsbuffeten.Data
             }
 
 
+        }
+
+        public static void SeedBookings(ApplicationDbContext context)
+        {
+            RoomBooking roomBooking = new RoomBooking()
+            {
+                DateFrom = new DateTime(2022, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                DateTo = new DateTime(2022, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                RoomNumber = 1,
+                Adults = 2,
+                Children = 3,
+            };
         }
     }
 }
