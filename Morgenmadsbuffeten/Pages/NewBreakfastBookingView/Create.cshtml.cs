@@ -37,6 +37,27 @@ namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
             BreakfastBooking.ChildrenCheckedIn = 0;
             BreakfastBooking.AdultsCheckedIn = 0;
 
+            var adultsInRoom = await _context.RoomBookings
+                .Where(rb => rb.RoomNumber == BreakfastBooking.Room)
+                .Select(rb => rb.Adults).FirstOrDefaultAsync();
+            var childrenInRoom = await _context.RoomBookings
+                .Where(rb => rb.RoomNumber == BreakfastBooking.Room)
+                .Select(rb => rb.Children).FirstOrDefaultAsync();
+
+            var RoomBookingTimeSpan = await _context.RoomBookings
+                .Where(rb => rb.DateFrom <= BreakfastBooking.Date && rb.DateTo >= BreakfastBooking.Date)
+                .FirstOrDefaultAsync();
+            if (RoomBookingTimeSpan == null)
+            {
+                return BadRequest("Tried to book breakfast outside of room booking timespan");
+            }
+
+            if (BreakfastBooking.AdultsOrdered > adultsInRoom ||
+                BreakfastBooking.ChildrenOrdered > childrenInRoom)
+            {
+                return BadRequest("Tried to order breakfast for more adults or/and children than the room contains");
+            }
+
             if (!ModelState.IsValid)
             {
                 return Page();

@@ -5,7 +5,9 @@
     ViewData["Title"] = "This many people had breakfast!";
 }
 
-<h1>Index</h1>
+<h1>Checked in guests for breakfast today</h1>
+
+<h3>Date: @DateOnly.FromDateTime(DateTime.Today).ToString()</h3>
 
 <p>
     <a asp-page="Create">Create New BreakfastBooking</a>
