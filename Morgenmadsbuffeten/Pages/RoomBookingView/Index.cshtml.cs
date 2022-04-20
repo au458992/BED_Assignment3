@@ -23,12 +23,12 @@ namespace Morgenmadsbuffeten.Pages.RoomBookingView
         }
 
         //public IList<RoomBooking> RoomBooking { get;set; }
-        public IList<BreakfastBooking> BBookings { get;set; }
+        public IList<BreakfastBooking> BreakfastBookings { get;set; }
 
         public async Task OnGetAsync()
         {
             //RoomBooking = await _context.RoomBookings.ToListAsync();
-            BBookings = await _context.BreakfastBookings.Where(bb=> bb.CheckedIn == true).Select(bb=> new
+            BreakfastBookings = await _context.BreakfastBookings.Where(bb=> bb.CheckedIn == true).Select(bb=> new
             {
                 Date = bb.Date,
                 RoomNumber = bb.Room.RoomNumber,
