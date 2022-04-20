@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Morgenmadsbuffeten.Data;
 using Morgenmadsbuffeten.Models;
 
-namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
+namespace Morgenmadsbuffeten.Pages.NewRoomBookingView
 {
     public class CreateModel : PageModel
     {
@@ -22,12 +22,11 @@ namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
 
         public IActionResult OnGet()
         {
-        ViewData["Room"] = new SelectList(_context.RoomBookings, "RoomNumber", "RoomNumber");
             return Page();
         }
 
         [BindProperty]
-        public BreakfastBooking BreakfastBooking { get; set; }
+        public RoomBooking RoomBooking { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -37,11 +36,7 @@ namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
                 return Page();
             }
 
-            // Checked in is 0 by default
-            BreakfastBooking.ChildrenCheckedIn = 0;
-            BreakfastBooking.AdultsCheckedIn = 0;
-
-            _context.BreakfastBookings.Add(BreakfastBooking);
+            _context.RoomBookings.Add(RoomBooking);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
