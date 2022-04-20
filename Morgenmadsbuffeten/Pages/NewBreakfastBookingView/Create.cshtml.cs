@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Morgenmadsbuffeten.Data;
 using Morgenmadsbuffeten.Models;
 
@@ -32,14 +33,14 @@ namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
+            // Checked in is 0 by default
+            BreakfastBooking.ChildrenCheckedIn = 0;
+            BreakfastBooking.AdultsCheckedIn = 0;
+
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-
-            // Checked in is 0 by default
-            BreakfastBooking.ChildrenCheckedIn = 0;
-            BreakfastBooking.AdultsCheckedIn = 0;
 
             _context.BreakfastBookings.Add(BreakfastBooking);
             await _context.SaveChangesAsync();

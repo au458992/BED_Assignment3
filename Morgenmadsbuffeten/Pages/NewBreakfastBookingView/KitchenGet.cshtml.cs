@@ -20,13 +20,13 @@ namespace Morgenmadsbuffeten.Pages.BreakfastBookingView
             _context = context;
         }
 
-        public IList<BreakfastBooking> BreakfastBooking { get;set; }
-        public IList<RoomBooking> RoomBooking { get;set; }
+        public IList<BreakfastBooking> BreakfastBooking { get; set; }
+        public IList<RoomBooking> RoomBooking { get; set; }
 
         public async Task OnGetAsync()
         {
             RoomBooking = await _context.RoomBookings.ToListAsync();
-            
+
             BreakfastBooking = await _context.BreakfastBookings
                 .Include(b => b.RoomBooking).ToListAsync();
         }
