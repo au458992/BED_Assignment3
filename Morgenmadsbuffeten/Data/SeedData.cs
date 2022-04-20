@@ -87,6 +87,10 @@ namespace Morgenmadsbuffeten.Data
                 Adults = 2,
                 Children = 3,
             };
+
+            context.Add(roomBooking);
+
+            context.SaveChanges();
         }
     }
 }

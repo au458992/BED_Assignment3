@@ -4,6 +4,7 @@ using Morgenmadsbuffeten.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -59,9 +60,9 @@ using (var scope = app.Services.CreateScope())
     else throw new Exception("Unable to get UserManager!");
 }
 
-using (var dbcontext = new ApplicationDbContext())
-{
-    SeedData.SeedBookings(dbcontext);
-}
+//using (var dbcontext = new ApplicationDbContext())
+//{
+//    SeedData.SeedBookings(dbcontext);
+//}
 
 app.Run();
