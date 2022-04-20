@@ -2,31 +2,32 @@
 @model Morgenmadsbuffeten.Pages.BreakfastBookingView.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Kitchen stuff";
 }
 
-<h1>Index</h1>
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
+<h1>Get info here kitchen peiple</h1>
 
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.BreakfastBooking[0].Date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BreakfastBooking[0].AdultsCheckedIn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BreakfastBooking[0].ChildrenCheckedIn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BreakfastBooking[0].RoomBooking)
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            @Html.Display("TotalGuests")
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.BreakfastBooking[0].Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BreakfastBooking[0].AdultsCheckedIn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BreakfastBooking[0].ChildrenCheckedIn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BreakfastBooking[0].RoomBooking)
+        </th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
 @foreach (var item in Model.BreakfastBooking) {
