@@ -28,14 +28,14 @@ namespace Morgenmadsbuffeten.Pages.RoomBookingView
 
         public async Task OnGetAsync()
         {
-            //RoomBooking = await _context.RoomBookings.ToListAsync();
-            //BreakfastBookings = await _context.BreakfastBookings.Where(bb=> bb.CheckedIn == true).Select(bb=> new RoomsBreakfastDTO
-            //{
-            //    Date = bb.Date,
-            //    RoomNumber = bb.RoomBooking.RoomNumber,
-            //    NumberOfChildren = bb.RoomBooking.Children,
-            //    NumberOfAdults = bb.RoomBooking.Adults,
-            //}).ToListAsync();
+            BreakfastBookings = await _context.BreakfastBookings
+                .Where(bb=> (bb.AdultsCheckedIn > 0 || bb.ChildrenCheckedIn> 0) && bb.Date==DateTime.Today)
+                .Select(bb=> new RoomsBreakfastDTO
+            {
+                RoomNumber = bb.RoomBooking.RoomNumber,
+                NumberOfChildren = bb.ChildrenCheckedIn,
+                NumberOfAdults = bb.AdultsCheckedIn,
+            }).ToListAsync();
         }
     }
 }
