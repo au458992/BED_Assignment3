@@ -24,7 +24,8 @@ namespace Morgenmadsbuffeten.Data
             //Many breakfastbookings to one room
             builder.Entity<BreakfastBooking>()
                 .HasOne(bb => bb.RoomBooking)
-                .WithMany(rb => rb.BreakfastBookings);
+                .WithMany(rb => rb.BreakfastBookings)
+                .HasForeignKey(bb => bb.Room);
         }
     }
 }
