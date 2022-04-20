@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -12,7 +11,6 @@ using Morgenmadsbuffeten.Models;
 
 namespace Morgenmadsbuffeten.Pages.BreakfastBookingView
 {
-    [Authorize("CanSeeWaiterStuff")]
     public class CreateModel : PageModel
     {
         private readonly Morgenmadsbuffeten.Data.ApplicationDbContext _context;
@@ -24,6 +22,7 @@ namespace Morgenmadsbuffeten.Pages.BreakfastBookingView
 
         public IActionResult OnGet()
         {
+        ViewData["Room"] = new SelectList(_context.RoomBookings, "RoomNumber", "RoomNumber");
             return Page();
         }
 
@@ -40,7 +39,6 @@ namespace Morgenmadsbuffeten.Pages.BreakfastBookingView
 
             _context.BreakfastBookings.Add(BreakfastBooking);
             await _context.SaveChangesAsync();
-
 
             return RedirectToPage("./Index");
         }

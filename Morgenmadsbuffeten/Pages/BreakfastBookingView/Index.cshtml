@@ -17,10 +17,13 @@
                 @Html.DisplayNameFor(model => model.BreakfastBooking[0].Date)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BreakfastBooking[0].CheckedIn)
+                @Html.DisplayNameFor(model => model.BreakfastBooking[0].AdultsCheckedIn)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BreakfastBooking[0].Room)
+                @Html.DisplayNameFor(model => model.BreakfastBooking[0].ChildrenCheckedIn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BreakfastBooking[0].RoomBooking)
             </th>
             <th></th>
         </tr>
@@ -32,10 +35,13 @@
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CheckedIn)
+                @Html.DisplayFor(modelItem => item.AdultsCheckedIn)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Room)
+                @Html.DisplayFor(modelItem => item.ChildrenCheckedIn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomBooking.RoomNumber)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.BreakfastBookingId">Edit</a> |

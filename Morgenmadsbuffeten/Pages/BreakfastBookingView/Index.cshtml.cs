@@ -24,7 +24,8 @@ namespace Morgenmadsbuffeten.Pages.BreakfastBookingView
 
         public async Task OnGetAsync()
         {
-            BreakfastBooking = await _context.BreakfastBookings.ToListAsync();
+            BreakfastBooking = await _context.BreakfastBookings
+                .Include(b => b.RoomBooking).ToListAsync();
         }
     }
 }

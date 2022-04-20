@@ -19,14 +19,19 @@
                 <input asp-for="BreakfastBooking.Date" class="form-control" />
                 <span asp-validation-for="BreakfastBooking.Date" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="BreakfastBooking.CheckedIn" /> @Html.DisplayNameFor(model => model.BreakfastBooking.CheckedIn)
-                </label>
+            <div class="form-group">
+                <label asp-for="BreakfastBooking.AdultsCheckedIn" class="control-label"></label>
+                <input asp-for="BreakfastBooking.AdultsCheckedIn" class="form-control" />
+                <span asp-validation-for="BreakfastBooking.AdultsCheckedIn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BreakfastBooking.ChildrenCheckedIn" class="control-label"></label>
+                <input asp-for="BreakfastBooking.ChildrenCheckedIn" class="form-control" />
+                <span asp-validation-for="BreakfastBooking.ChildrenCheckedIn" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="BreakfastBooking.Room" class="control-label"></label>
-                <input asp-for="BreakfastBooking.Room" class="form-control" />
+                <select asp-for="BreakfastBooking.Room" class="form-control" asp-items="ViewBag.Room"></select>
                 <span asp-validation-for="BreakfastBooking.Room" class="text-danger"></span>
             </div>
             <div class="form-group">

@@ -29,7 +29,8 @@ namespace Morgenmadsbuffeten.Pages.BreakfastBookingView
                 return NotFound();
             }
 
-            BreakfastBooking = await _context.BreakfastBookings.FirstOrDefaultAsync(m => m.BreakfastBookingId == id);
+            BreakfastBooking = await _context.BreakfastBookings
+                .Include(b => b.RoomBooking).FirstOrDefaultAsync(m => m.BreakfastBookingId == id);
 
             if (BreakfastBooking == null)
             {
