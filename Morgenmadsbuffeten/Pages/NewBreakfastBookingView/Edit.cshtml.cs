@@ -12,6 +12,7 @@ using Morgenmadsbuffeten.Models;
 
 namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
 {
+    //[Authorize("CanSeeWaiterStuff")]
     public class EditModel : PageModel
     {
         private readonly Morgenmadsbuffeten.Data.ApplicationDbContext _context;

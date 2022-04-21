@@ -16,8 +16,8 @@
             <input type="hidden" asp-for="BreakfastBooking.BreakfastBookingId" />
             <div class="form-group">
                 <label asp-for="BreakfastBooking.Room" class="control-label"></label>
-                <select asp-for="BreakfastBooking.Room" class="form-control" asp-items="ViewBag.Room"></select>
-                <span asp-validation-for="BreakfastBooking.Room" class="text-danger"></span>
+                <select asp-for="BreakfastBooking.Room" class="form-control"  asp-items="ViewBag.Room"></select>
+                <span asp-validation-for="BreakfastBooking.Room"  class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="BreakfastBooking.Date" class="control-label"></label>
@@ -26,7 +26,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="BreakfastBooking.AdultsCheckedIn" class="control-label"></label>
-                <input asp-for="BreakfastBooking.AdultsCheckedIn" class="form-control" />
+                <input asp-for="BreakfastBooking.AdultsCheckedIn"  class="form-control" />
                 <span asp-validation-for="BreakfastBooking.AdultsCheckedIn" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -34,7 +34,7 @@
                 <input asp-for="BreakfastBooking.ChildrenCheckedIn" class="form-control" />
                 <span asp-validation-for="BreakfastBooking.ChildrenCheckedIn" class="text-danger"></span>
             </div>
-            <div class="form-group">
+           @* <div class="form-group">
                 <label asp-for="BreakfastBooking.AdultsOrdered" class="control-label"></label>
                 <input asp-for="BreakfastBooking.AdultsOrdered" class="form-control" readonly="true"/>
                 <span asp-validation-for="BreakfastBooking.AdultsOrdered" class="text-danger"></span>
@@ -43,7 +43,7 @@
                 <label asp-for="BreakfastBooking.ChildrenOrdered" class="control-label"></label>
                 <input asp-for="BreakfastBooking.ChildrenOrdered" class="form-control" readonly="true"/>
                 <span asp-validation-for="BreakfastBooking.ChildrenOrdered" class="text-danger"></span>
-            </div>
+            </div>*@
             
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
@@ -58,4 +58,7 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/CheckIn.js" ></script>
 }
+
+
