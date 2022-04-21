@@ -33,12 +33,13 @@ namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
         public async Task<IActionResult> OnGetAsync()
         {
             BreakfastBooking = await _context.BreakfastBookings
-                .Include(b => b.RoomBooking).FirstOrDefaultAsync(m => m.BreakfastBookingId == 1);
+                .Include(b => b.RoomBooking).FirstOrDefaultAsync();
 
             if (BreakfastBooking == null)
             {
                 return NotFound();
             }
+
             ViewData["Room"] = new SelectList(_context.RoomBookings, "RoomNumber", "RoomNumber");
             return Page();
         }
@@ -51,6 +52,18 @@ namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
             {
                 return Page();
             }
+
+            var bb = await _context.BreakfastBookings
+                .Where(bb =>
+                    bb.BreakfastBookingId == BreakfastBooking.BreakfastBookingId && bb.Date == BreakfastBooking.Date)
+                .SingleOrDefaultAsync();
+
+
+            if (bb == null)
+                return Page();
+
+            bb.ChildrenCheckedIn += BreakfastBooking.ChildrenCheckedIn;
+            bb.AdultsCheckedIn += BreakfastBooking.AdultsCheckedIn;
 
             _context.Attach(BreakfastBooking).State = EntityState.Modified;
 

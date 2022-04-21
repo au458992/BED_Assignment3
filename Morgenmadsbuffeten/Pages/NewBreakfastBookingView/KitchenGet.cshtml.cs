@@ -60,8 +60,8 @@ namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
                 TotalOrdersChildren += bb.ChildrenOrdered;
                 TotalCheckedInAdults += bb.AdultsCheckedIn;
                 TotalCheckedInChildren += bb.ChildrenCheckedIn;
-
             }
+
             TotalOrders = TotalOrdersAdults + TotalOrdersChildren;
             TotalNotCheckedIn = TotalOrders - (TotalCheckedInAdults + TotalCheckedInChildren);
             TotalAdultsNotCheckedIn = TotalOrdersAdults - TotalCheckedInAdults;
