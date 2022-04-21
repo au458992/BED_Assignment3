@@ -62,6 +62,7 @@ namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
             if (bb == null)
                 return Page();
 
+
             bb.ChildrenCheckedIn += BreakfastBooking.ChildrenCheckedIn;
             bb.AdultsCheckedIn += BreakfastBooking.AdultsCheckedIn;
 
