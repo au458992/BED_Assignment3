@@ -32,8 +32,18 @@ namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
         public int TotalCheckedInAdults { get; set; }
         public int TotalCheckedInChildren { get; set; }
 
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(string date)
         {
+            string dateFormat = "dd-MM-yyyy";
+            if(string.IsNullOrEmpty(date))
+            {
+                //Date = DateTime.Today;
+                string url = "/NewBreakfastBookingView/KitchenGet?date=" +
+                    DateTime.Today.ToString(dateFormat);
+                return Redirect(url);
+            }
+            Date = DateTime.Parse(date);
+
             BreakfastBooking = await _context.BreakfastBookings.Where(bb=>bb.Date==Date)
                 .Include(b => b.RoomBooking).ToListAsync();
             foreach (var bb in BreakfastBooking)
@@ -48,8 +58,17 @@ namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
             TotalNotCheckedIn = TotalOrders - (TotalCheckedInAdults + TotalCheckedInChildren);
             TotalAdultsNotCheckedIn = TotalOrdersAdults - TotalCheckedInAdults;
             TotalChildrenNotCheckedIn = TotalOrdersChildren - TotalCheckedInChildren;
-
-
+            return Page();
         }
+
+        //public async Task<IActionResult> OnPostAsync()
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return Page();
+        //    }
+
+        //    return RedirectToPage("./KitchenGet");
+        //}
     }
 }

@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Morgenmadsbuffeten.Data;
+using Morgenmadsbuffeten.Hubs;
 using Morgenmadsbuffeten.Models;
 
 namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
@@ -15,10 +17,11 @@ namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
     public class CreateModel : PageModel
     {
         private readonly Morgenmadsbuffeten.Data.ApplicationDbContext _context;
-
-        public CreateModel(Morgenmadsbuffeten.Data.ApplicationDbContext context)
+        private readonly IHubContext<LiveReloadHub> _reloadHubContext;
+        public CreateModel(Morgenmadsbuffeten.Data.ApplicationDbContext context, IHubContext<LiveReloadHub> reloadHubContext )
         {
             _context = context;
+            _reloadHubContext = reloadHubContext;
         }
 
         public IActionResult OnGet()
@@ -65,6 +68,8 @@ namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
 
             _context.BreakfastBookings.Add(BreakfastBooking);
             await _context.SaveChangesAsync();
+
+            await _reloadHubContext.Clients.All.SendAsync("Reload");
 
             return RedirectToPage("./Index");
         }
