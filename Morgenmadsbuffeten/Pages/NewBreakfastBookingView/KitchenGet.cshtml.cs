@@ -1,6 +1,7 @@
 ﻿#nullable disable
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -34,15 +35,22 @@ namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
 
         public async Task<IActionResult> OnGetAsync(string date)
         {
-            string dateFormat = "dd-MM-yyyy";
+            string[] dateFormats = {
+            "dd-MM-yyyy", "yyyy-MM-dd"
+            };
+
             if(string.IsNullOrEmpty(date))
             {
                 //Date = DateTime.Today;
                 string url = "/NewBreakfastBookingView/KitchenGet?date=" +
-                    DateTime.Today.ToString(dateFormat);
+                             DateTime.Today.ToString(dateFormats[0]);
                 return Redirect(url);
             }
-            Date = DateTime.Parse(date);
+
+            if (DateTime.TryParseExact(date, dateFormats, CultureInfo.InvariantCulture, DateTimeStyles.None, out var formattedDate))
+            {
+                Date = formattedDate;
+            }
 
             BreakfastBooking = await _context.BreakfastBookings.Where(bb=>bb.Date==Date)
                 .Include(b => b.RoomBooking).ToListAsync();
