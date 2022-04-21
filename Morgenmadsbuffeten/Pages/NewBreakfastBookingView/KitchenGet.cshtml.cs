@@ -69,14 +69,5 @@ namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
             return Page();
         }
 
-        //public async Task<IActionResult> OnPostAsync()
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return Page();
-        //    }
-
-        //    return RedirectToPage("./KitchenGet");
-        //}
     }
 }
