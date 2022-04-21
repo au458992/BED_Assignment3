@@ -70,7 +70,7 @@ namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
                 }
             }
             await _reloadHubContext.Clients.All.SendAsync("Reload");
-            return RedirectToPage("./Index");
+            return RedirectToPage("./CheckIn");
         }
 
         private bool BreakfastBookingExists(long id)

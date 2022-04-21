@@ -31,21 +31,21 @@ namespace Morgenmadsbuffeten.Data
                 .WithMany(rb => rb.BreakfastBookings)
                 .HasForeignKey(bb => bb.Room);
 
-            SeedData(builder);
+            //SeedData(builder);
         }
 
-        public void SeedData(ModelBuilder modelBuilder)
-        {
-            RoomBooking roomBooking = new RoomBooking()
-            {
-                DateFrom = new DateTime(2022, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                DateTo = new DateTime(2022, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                RoomNumber = 1,
-                Adults = 2,
-                Children = 3,
-            };
+        //public void SeedData(ModelBuilder modelBuilder)
+        //{
+        //    RoomBooking roomBooking = new RoomBooking()
+        //    {
+        //        DateFrom = new DateTime(2022, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+        //        DateTo = new DateTime(2022, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+        //        RoomNumber = 1,
+        //        Adults = 2,
+        //        Children = 3,
+        //    };
 
-            modelBuilder.Entity<RoomBooking>().HasData(roomBooking);
-        }
+        //    modelBuilder.Entity<RoomBooking>().HasData(roomBooking);
+        //}
     }
 }

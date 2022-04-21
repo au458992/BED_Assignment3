@@ -254,7 +254,7 @@ namespace Morgenmadsbuffeten.Data.Migrations
 
                     b.HasIndex("Room");
 
-                    b.ToTable("BreakfastBookings");
+                    b.ToTable("BreakfastBookings", (string)null);
                 });
 
             modelBuilder.Entity("Morgenmadsbuffeten.Models.RoomBooking", b =>
@@ -279,17 +279,7 @@ namespace Morgenmadsbuffeten.Data.Migrations
 
                     b.HasKey("RoomNumber");
 
-                    b.ToTable("RoomBookings");
-
-                    b.HasData(
-                        new
-                        {
-                            RoomNumber = 1L,
-                            Adults = 2,
-                            Children = 3,
-                            DateFrom = new DateTime(2022, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateTo = new DateTime(2022, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
+                    b.ToTable("RoomBookings", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
