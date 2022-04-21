@@ -69,7 +69,7 @@ namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
                     throw;
                 }
             }
-
+            await _reloadHubContext.Clients.All.SendAsync("Reload");
             return RedirectToPage("./Index");
         }
 
