@@ -63,7 +63,7 @@ namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
                 return Page();
 
             if ((bb.ChildrenCheckedIn + BreakfastBooking.ChildrenCheckedIn > bb.ChildrenOrdered)
-                || bb.AdultsCheckedIn + BreakfastBooking.AdultsCheckedIn > bb.AdultsOrdered)
+                || (bb.AdultsCheckedIn + BreakfastBooking.AdultsCheckedIn > bb.AdultsOrdered))
             {
                 return BadRequest("Tried to check-in more adults or children than there are orders.");
             }
