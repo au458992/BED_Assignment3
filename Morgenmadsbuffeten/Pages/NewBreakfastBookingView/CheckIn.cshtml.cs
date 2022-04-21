@@ -71,7 +71,7 @@ namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
             bb.ChildrenCheckedIn += BreakfastBooking.ChildrenCheckedIn;
             bb.AdultsCheckedIn += BreakfastBooking.AdultsCheckedIn;
 
-            _context.Attach(BreakfastBooking).State = EntityState.Modified;
+            _context.Attach(bb).State = EntityState.Modified;
 
             try
             {
