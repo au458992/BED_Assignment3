@@ -7,43 +7,35 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Morgenmadsbuffeten.Data;
-using Morgenmadsbuffeten.Hubs;
 using Morgenmadsbuffeten.Models;
 
 namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
 {
     [Authorize("CanSeeWaiterStuff")]
-    public class EditModel : PageModel
+    public class CheckInModel : PageModel
     {
         private readonly Morgenmadsbuffeten.Data.ApplicationDbContext _context;
-        private readonly IHubContext<LiveReloadHub> _reloadHubContext;
-        public EditModel(Morgenmadsbuffeten.Data.ApplicationDbContext context, IHubContext<LiveReloadHub> reloadHubContext)
+
+        public CheckInModel(Morgenmadsbuffeten.Data.ApplicationDbContext context)
         {
             _context = context;
-            _reloadHubContext = reloadHubContext;
         }
 
         [BindProperty]
         public BreakfastBooking BreakfastBooking { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(long? id)
+        public async Task<IActionResult> OnGetAsync()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
             BreakfastBooking = await _context.BreakfastBookings
-                .Include(b => b.RoomBooking).FirstOrDefaultAsync(m => m.BreakfastBookingId == id);
+                .Include(b => b.RoomBooking).FirstOrDefaultAsync(m => m.BreakfastBookingId == 1);
 
             if (BreakfastBooking == null)
             {
                 return NotFound();
             }
-           ViewData["Room"] = new SelectList(_context.RoomBookings, "RoomNumber", "RoomNumber");
+            ViewData["Room"] = new SelectList(_context.RoomBookings, "RoomNumber", "RoomNumber");
             return Page();
         }
 
@@ -73,7 +65,7 @@ namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
                     throw;
                 }
             }
-            await _reloadHubContext.Clients.All.SendAsync("Reload");
+
             return RedirectToPage("./Index");
         }
 

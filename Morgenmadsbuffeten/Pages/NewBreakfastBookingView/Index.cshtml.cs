@@ -13,7 +13,7 @@ using Morgenmadsbuffeten.Models;
 
 namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
 {
-    [Authorize("CanSeeReceptionStuff")]
+    //[Authorize("CanSeeReceptionStuff")]
     public class IndexModel : PageModel
     {
         private readonly Morgenmadsbuffeten.Data.ApplicationDbContext _context;
