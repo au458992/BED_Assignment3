@@ -62,11 +62,16 @@ namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
             if (bb == null)
                 return Page();
 
+            if ((bb.ChildrenCheckedIn + BreakfastBooking.ChildrenCheckedIn > bb.ChildrenOrdered)
+                || bb.AdultsCheckedIn + BreakfastBooking.AdultsCheckedIn > bb.AdultsOrdered)
+            {
+                return BadRequest("Tried to check-in more adults or children than there are orders.");
+            }
 
             bb.ChildrenCheckedIn += BreakfastBooking.ChildrenCheckedIn;
             bb.AdultsCheckedIn += BreakfastBooking.AdultsCheckedIn;
 
-            _context.Attach(bb).State = EntityState.Modified;
+            _context.Attach(BreakfastBooking).State = EntityState.Modified;
 
             try
             {
