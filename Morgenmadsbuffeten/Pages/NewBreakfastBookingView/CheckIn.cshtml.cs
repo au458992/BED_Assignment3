@@ -7,8 +7,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Morgenmadsbuffeten.Data;
+using Morgenmadsbuffeten.Hubs;
 using Morgenmadsbuffeten.Models;
 
 namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
@@ -17,10 +19,12 @@ namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
     public class CheckInModel : PageModel
     {
         private readonly Morgenmadsbuffeten.Data.ApplicationDbContext _context;
+        private readonly IHubContext<LiveReloadHub> _reloadHubContext;
 
-        public CheckInModel(Morgenmadsbuffeten.Data.ApplicationDbContext context)
+        public CheckInModel(Morgenmadsbuffeten.Data.ApplicationDbContext context, IHubContext<LiveReloadHub> reloadHubContext)
         {
             _context = context;
+            _reloadHubContext = reloadHubContext;
         }
 
         [BindProperty]
