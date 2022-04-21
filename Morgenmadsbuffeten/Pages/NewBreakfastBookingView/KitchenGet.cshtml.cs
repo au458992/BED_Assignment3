@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Morgenmadsbuffeten.Data;
 using Morgenmadsbuffeten.Models;
 
-namespace Morgenmadsbuffeten.Pages.BreakfastBookingView
+namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
 {
     public class KitchenGetModel : PageModel
     {
@@ -21,14 +21,35 @@ namespace Morgenmadsbuffeten.Pages.BreakfastBookingView
         }
 
         public IList<BreakfastBooking> BreakfastBooking { get; set; }
-        public IList<RoomBooking> RoomBooking { get; set; }
+        [BindProperty]
+        public DateTime Date { get; set; } = DateTime.Today;
+        public int TotalOrders { get; set; }
+        public int TotalNotCheckedIn { get; set; }
+        public int TotalAdultsNotCheckedIn { get; set; }
+        public int TotalChildrenNotCheckedIn { get; set; }
+        public int TotalOrdersAdults { get; set; }
+        public int TotalOrdersChildren { get; set; }
+        public int TotalCheckedInAdults { get; set; }
+        public int TotalCheckedInChildren { get; set; }
 
         public async Task OnGetAsync()
         {
-            RoomBooking = await _context.RoomBookings.ToListAsync();
-
-            BreakfastBooking = await _context.BreakfastBookings
+            BreakfastBooking = await _context.BreakfastBookings.Where(bb=>bb.Date==Date)
                 .Include(b => b.RoomBooking).ToListAsync();
+            foreach (var bb in BreakfastBooking)
+            {
+                TotalOrdersAdults += bb.AdultsOrdered;
+                TotalOrdersChildren += bb.ChildrenOrdered;
+                TotalCheckedInAdults += bb.AdultsCheckedIn;
+                TotalCheckedInChildren += bb.ChildrenCheckedIn;
+
+            }
+            TotalOrders = TotalOrdersAdults + TotalOrdersChildren;
+            TotalNotCheckedIn = TotalOrders - (TotalCheckedInAdults + TotalCheckedInChildren);
+            TotalAdultsNotCheckedIn = TotalOrdersAdults - TotalCheckedInAdults;
+            TotalChildrenNotCheckedIn = TotalOrdersChildren - TotalCheckedInChildren;
+
+
         }
     }
 }
