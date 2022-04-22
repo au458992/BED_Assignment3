@@ -16,7 +16,7 @@ const connection = new signalR.HubConnectionBuilder()
     };
 
     connection.on("Reload", function (message) {
-        window.location.reload("KitchenGet");
+        window.location.reload("KitchenGet", "Index");
     })
 
     connection.onclose(async () => {
