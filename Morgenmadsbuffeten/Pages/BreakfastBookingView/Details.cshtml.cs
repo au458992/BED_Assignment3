@@ -1,15 +1,10 @@
 ﻿#nullable disable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using Morgenmadsbuffeten.Data;
 using Morgenmadsbuffeten.Models;
 
-namespace Morgenmadsbuffeten.Pages.NewRoomBookingView
+namespace Morgenmadsbuffeten.Pages.BreakfastBookingView
 {
     public class DetailsModel : PageModel
     {
@@ -20,7 +15,7 @@ namespace Morgenmadsbuffeten.Pages.NewRoomBookingView
             _context = context;
         }
 
-        public RoomBooking RoomBooking { get; set; }
+        public BreakfastBooking BreakfastBooking { get; set; }
 
         public async Task<IActionResult> OnGetAsync(long? id)
         {
@@ -29,9 +24,10 @@ namespace Morgenmadsbuffeten.Pages.NewRoomBookingView
                 return NotFound();
             }
 
-            RoomBooking = await _context.RoomBookings.FirstOrDefaultAsync(m => m.RoomNumber == id);
+            BreakfastBooking = await _context.BreakfastBookings
+                .Include(b => b.RoomBooking).FirstOrDefaultAsync(m => m.BreakfastBookingId == id);
 
-            if (RoomBooking == null)
+            if (BreakfastBooking == null)
             {
                 return NotFound();
             }
