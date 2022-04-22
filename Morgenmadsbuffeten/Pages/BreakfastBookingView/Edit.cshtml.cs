@@ -1,19 +1,14 @@
 ﻿#nullable disable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
-using Morgenmadsbuffeten.Data;
 using Morgenmadsbuffeten.Hubs;
 using Morgenmadsbuffeten.Models;
 
-namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
+namespace Morgenmadsbuffeten.Pages.BreakfastBookingView
 {
     [Authorize("CanSeeWaiterStuff")]
     public class EditModel : PageModel

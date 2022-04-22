@@ -1,16 +1,11 @@
 ﻿#nullable disable
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using Morgenmadsbuffeten.Data;
 using Morgenmadsbuffeten.Models;
 
-namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
+namespace Morgenmadsbuffeten.Pages.BreakfastBookingView
 {
     public class KitchenGetModel : PageModel
     {

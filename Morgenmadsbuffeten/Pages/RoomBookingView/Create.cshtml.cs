@@ -1,15 +1,9 @@
 ﻿#nullable disable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Morgenmadsbuffeten.Data;
 using Morgenmadsbuffeten.Models;
 
-namespace Morgenmadsbuffeten.Pages.NewRoomBookingView
+namespace Morgenmadsbuffeten.Pages.RoomBookingView
 {
     public class CreateModel : PageModel
     {
