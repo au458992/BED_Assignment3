@@ -42,6 +42,14 @@ namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
             BreakfastBooking.ChildrenCheckedIn = 0;
             BreakfastBooking.AdultsCheckedIn = 0;
 
+            var bbDate = await _context.BreakfastBookings
+                .Where(bb => bb.Date == BreakfastBooking.Date && bb.Room == BreakfastBooking.Room)
+                .FirstOrDefaultAsync();
+            if (bbDate != null)
+            {
+                return BadRequest("There is already a breakfast booking for the chosen date");
+            }
+
             var adultsInRoom = await _context.RoomBookings
                 .Where(rb => rb.RoomNumber == BreakfastBooking.Room)
                 .Select(rb => rb.Adults).FirstOrDefaultAsync();
