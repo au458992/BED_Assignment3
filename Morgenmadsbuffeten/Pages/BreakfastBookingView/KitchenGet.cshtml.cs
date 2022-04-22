@@ -37,7 +37,7 @@ namespace Morgenmadsbuffeten.Pages.BreakfastBookingView
             if(string.IsNullOrEmpty(date))
             {
                 //Date = DateTime.Today;
-                string url = "/NewBreakfastBookingView/KitchenGet?date=" +
+                string url = "/BreakfastBookingView/KitchenGet?date=" +
                              DateTime.Today.ToString(dateFormats[0]);
                 return Redirect(url);
             }
