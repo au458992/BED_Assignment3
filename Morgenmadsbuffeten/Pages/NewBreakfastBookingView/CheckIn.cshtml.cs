@@ -55,7 +55,7 @@ namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
 
             var bb = await _context.BreakfastBookings
                 .Where(bb =>
-                    bb.BreakfastBookingId == BreakfastBooking.BreakfastBookingId && bb.Date == BreakfastBooking.Date)
+                    bb.Room == BreakfastBooking.Room && bb.Date == BreakfastBooking.Date)
                 .SingleOrDefaultAsync();
 
 

@@ -23,7 +23,7 @@ namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
             _context = context;
         }
 
-        public IList<RoomsBreakfastDTO> BreakfastBookings { get;set; }
+        public List<RoomsBreakfastDTO> BreakfastBookings { get;set; }
 
         public async Task OnGetAsync()
         {
@@ -36,6 +36,8 @@ namespace Morgenmadsbuffeten.Pages.NewBreakfastBookingView
                     NumberOfChildren = bb.ChildrenCheckedIn,
                     NumberOfAdults = bb.AdultsCheckedIn,
                 }).ToListAsync();
+
+            Console.WriteLine(BreakfastBookings);
         }
     }
 }
